@@ -5,6 +5,15 @@ import BookingRoutes from "./routes/BookingRoute.js";
 import ServiceRoutes from "./routes/ServiceRoute.js";
 import welcomeRoutes from "./routes/WelcomeMail.js";
 import EmployeeRoutes from "./routes/EmployeeRoutes.js";
+import InvoiceRoutes from "./routes/InvoiceRoute.js";
+import EmailRoutes from "./routes/emailRoutes.js";
+import LeadRoutes from "./routes/LeadRoute.js";
+import AdminRoutes from "./routes/AdminRoute.js";
+import dotenv from "dotenv";
+dotenv.config();
+import PaymentRoutes from "./routes/PaymentRoutes.js";
+import "./cron/deleteDuplicates.js";
+
 
 
 import cors from "cors";
@@ -26,6 +35,12 @@ app.use("/booking", BookingRoutes);
 app.use("/services", ServiceRoutes);
 app.use("/mail", welcomeRoutes);
 app.use("/employee", EmployeeRoutes);
+app.use("/invoice", InvoiceRoutes);
+app.use("/email", EmailRoutes);
+app.use("/leads", LeadRoutes);
+app.use("/admin", AdminRoutes);
+app.use("/payments", PaymentRoutes);
+
 
 
 app.get("/", (req, res) => {

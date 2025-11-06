@@ -26,7 +26,7 @@ BookingRoutes.post("/addbooking", authenticateUser, async (req, res) => {
     date,
     status,
     bank,
-    funddisbursement,
+    after_disbursement,
     state,
   } = req.body;
 
@@ -80,7 +80,7 @@ BookingRoutes.post("/addbooking", authenticateUser, async (req, res) => {
       status,
       bank,
       state,
-      after_disbursement: funddisbursement,
+      after_disbursement,
     };
 
     const booking = await BookingModel.create(new_booking);
@@ -176,21 +176,26 @@ BookingRoutes.patch("/editbooking/:id", authenticateUser, async (req, res) => {
   }
 });
 
-
 //trash
 BookingRoutes.patch("/trash/:id", authenticateUser, async (req, res) => {
   const { id } = req.params;
   const userRole = req.headers["user-role"];
-  const deletedBy = req.headers["user-name"]; 
+  const deletedBy = req.headers["user-name"];
 
   if (!userRole || !["srdev", "dev"].includes(userRole)) {
-    return res.status(403).send({ message: "Only dev or srdev can move bookings to trash." });
+    return res
+      .status(403)
+      .send({ message: "Only dev or srdev can move bookings to trash." });
   }
 
   try {
     const trashedBooking = await BookingModel.findByIdAndUpdate(
       id,
-      { isDeleted: true, deletedAt: new Date(), deletedBy: deletedBy || "Unknown" },
+      {
+        isDeleted: true,
+        deletedAt: new Date(),
+        deletedBy: deletedBy || "Unknown",
+      },
       { new: true }
     );
 
@@ -204,7 +209,6 @@ BookingRoutes.patch("/trash/:id", authenticateUser, async (req, res) => {
   }
 });
 
-
 // to fetch from the trash
 BookingRoutes.get("/trash", authenticateUser, async (req, res) => {
   const userRole = req.headers["user-role"];
@@ -214,7 +218,9 @@ BookingRoutes.get("/trash", authenticateUser, async (req, res) => {
   }
 
   try {
-    const trashedBookings = await BookingModel.find({ isDeleted: true }).sort({ deletedAt: -1 });
+    const trashedBookings = await BookingModel.find({ isDeleted: true }).sort({
+      deletedAt: -1,
+    });
     res.status(200).send(trashedBookings);
   } catch (err) {
     res.status(500).send({ message: err.message });
@@ -227,7 +233,9 @@ BookingRoutes.patch("/restore/:id", authenticateUser, async (req, res) => {
   const userRole = req.headers["user-role"];
 
   if (!userRole || userRole !== "srdev") {
-    return res.status(403).send({ message: "Only srdev can restore trashed bookings." });
+    return res
+      .status(403)
+      .send({ message: "Only srdev can restore trashed bookings." });
   }
 
   try {
@@ -241,49 +249,91 @@ BookingRoutes.patch("/restore/:id", authenticateUser, async (req, res) => {
       return res.status(404).send({ message: "Booking not found" });
     }
 
-    res.status(200).send({ message: "Booking restored successfully", restoredBooking });
+    res
+      .status(200)
+      .send({ message: "Booking restored successfully", restoredBooking });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 });
 
-
-
 //Delete Booking
-BookingRoutes.delete("/deletebooking/:id", authenticateUser, async (req, res) => {
-  const { id } = req.params;
-  const userRole = req.headers["user-role"];
+BookingRoutes.delete(
+  "/deletebooking/:id",
+  authenticateUser,
+  async (req, res) => {
+    const { id } = req.params;
+    const userRole = req.headers["user-role"];
 
-  if (userRole !== "srdev") {
-    return res.status(403).send({ message: "Only srdev can permanently delete bookings." });
+    if (userRole !== "srdev") {
+      return res
+        .status(403)
+        .send({ message: "Only srdev can permanently delete bookings." });
+    }
+
+    const booking = await BookingModel.findById(id);
+
+    if (!booking) {
+      return res.status(404).send({ message: "Booking not found" });
+    }
+
+    if (!booking.isDeleted) {
+      return res
+        .status(400)
+        .send({
+          message: "You must move this booking to trash before deleting.",
+        });
+    }
+
+    try {
+      await BookingModel.findByIdAndDelete(id);
+      return res.status(200).send({ message: "Booking permanently deleted." });
+    } catch (err) {
+      return res.status(500).send({ message: err.message });
+    }
   }
+);
 
-  const booking = await BookingModel.findById(id);
+//getting booking by id
+BookingRoutes.get(
+  "/getbooking/:id",
+  authenticateUser,
+  async (req, res) => {
+    const { id } = req.params;
 
-  if (!booking) {
-    return res.status(404).send({ message: "Booking not found" });
+    try {
+      const booking = await BookingModel.findById(id);
+
+      if (!booking) {
+        return res.status(404).send({ message: "Booking not found" });
+      }
+
+      // Optionally, you can restrict access based on role or ownership
+      // Example:
+      // const userRole = req.headers["user-role"];
+      // if (userRole !== "srdev" && booking.createdBy.toString() !== req.user._id) {
+      //   return res.status(403).send({ message: "You are not authorized to view this booking." });
+      // }
+
+      return res.status(200).send({ booking });
+    } catch (err) {
+      return res.status(500).send({ message: err.message });
+    }
   }
-
-  if (!booking.isDeleted) {
-    return res.status(400).send({ message: "You must move this booking to trash before deleting." });
-  }
-
-  try {
-    await BookingModel.findByIdAndDelete(id);
-    return res.status(200).send({ message: "Booking permanently deleted." });
-  } catch (err) {
-    return res.status(500).send({ message: err.message });
-  }
-});
+);
 
 
 //Getting all bookings
 BookingRoutes.get("/all", authenticateUser, async (req, res) => {
   try {
-    const Allbookings = await BookingModel.find({ isDeleted: false }).sort({ createdAt: -1 });
+    const Allbookings = await BookingModel.find({ isDeleted: false }).sort({
+      createdAt: -1,
+    });
 
     if (!Allbookings.length) {
-      return res.status(200).send({ message: "No Bookings Found", Allbookings: [] });
+      return res
+        .status(200)
+        .send({ message: "No Bookings Found", Allbookings: [] });
     }
 
     return res.status(200).send({
@@ -428,7 +478,4 @@ BookingRoutes.get("/bookings/filter", authenticateUser, async (req, res) => {
   }
 });
 
-
-
 export default BookingRoutes;
- 

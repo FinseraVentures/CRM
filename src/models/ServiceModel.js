@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const serviceSchema = mongoose.Schema(
   {
-    name: { type: String, required: true },
+    label: { type: String, required: true },
     value: { type: String, required: true, unique: true },
-    status: { type: Boolean, required: true },
+    status: { type: Boolean, required: true ,default:true},
   },
   { 
     timestamps: false, 

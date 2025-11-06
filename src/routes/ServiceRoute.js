@@ -1,23 +1,47 @@
 import express from "express";
 import { ServiceModel } from "../models/ServiceModel.js";
 import { authenticateUser, authorizeDevRole } from "../middlewares/authMiddleware.js";
-// import servicesList from '../servicesList.js'; // Adjust the import path for your services list
+// import servicesList from '../data/ServiceList.js'; // Adjust the import path for your services list
 
 
 const ServiceRoutes = express.Router();
 
+
+// ServiceRoutes.post("/bulk", async (req, res) => {
+// console.log(typeof(servicesList))
+//     try {
+//     // const { contacts } =servicesList; // Expecting an array
+//     // if (!Array.isArray(contacts)) {
+//     //   return res.status(400).json({ message: "contacts must be an array" });
+//     // }
+//     const data=servicesList
+//     const contacts = data.map(item => ({
+//         label: item.label,
+//         value: item.value,
+//         status: item.status ? item.status : true
+//     }));
+
+//     const result = await ServiceModel.insertMany(contacts);
+//     res.status(201).json({ success: true, count: result.length, data: result });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Server error", error: err.message });
+//   }
+// });
+
 // Route to add a new service
-ServiceRoutes.post('/api/services',authenticateUser,async (req, res) => {
-    const { name, value, status } = req.body;
+ServiceRoutes.post('/api/services',async (req, res) => {
+    // console.log(req.body)
+    const { label, value, status } = req.body;
 
     // Validate input
-    if (!name || !value || !status) {
+    if (!label || !value || !status) {
         return res.status(400).send('Invalid input data');
     }
 
     // Create and save the service
     const service = {
-        name,
+        label,
         value,
         status
     }
@@ -29,6 +53,8 @@ ServiceRoutes.post('/api/services',authenticateUser,async (req, res) => {
         res.status(500).send({ message: 'Error adding service', error: error.message });
     }
 });
+
+
 
 //edit service
 ServiceRoutes.patch('/api/services/:id', authenticateUser, authorizeDevRole,async (req, res) => {
