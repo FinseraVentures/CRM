@@ -96,7 +96,6 @@ BookingRoutes.post("/addbooking", authenticateUser, async (req, res) => {
 });
 
 //Edit booking
-
 BookingRoutes.patch("/editbooking/:id", authenticateUser, async (req, res) => {
   const { id } = req.params;
   let updates = req.body;
@@ -322,7 +321,6 @@ BookingRoutes.get(
   }
 );
 
-
 //Getting all bookings
 BookingRoutes.get("/all", authenticateUser, async (req, res) => {
   try {
@@ -345,19 +343,6 @@ BookingRoutes.get("/all", authenticateUser, async (req, res) => {
     return res.status(500).send({ message: err.message });
   }
 });
-
-// BookingRoutes.get("/all", authenticateUser, async (req, res) => {
-//   const limit = req.query.limit;
-//   const Allbookings = await BookingModel.find({ isDeleted: false })
-//     .sort({ createdAt: -1 }) // Sort by `createdAt` in descending order (latest first)
-//     .limit(limit); // Limit the results to the latest 100
-//   if (Allbookings.length != 0) {
-//     return res
-//       .status(200)
-//       .send({ message: "All Bookings Fetched Successfully", Allbookings });
-//   }
-//   return res.status(404).send({ message: "No Bookings To Show" });
-// });
 
 // Combined filter route
 BookingRoutes.get("/bookings/filter", authenticateUser, async (req, res) => {
@@ -477,5 +462,39 @@ BookingRoutes.get("/bookings/filter", authenticateUser, async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 });
+
+//get bokkings by user id
+BookingRoutes.get(
+  "/getbookings/user/:userId",
+  authenticateUser,
+  async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+      // Fetch bookings of this specific user
+      const userBookings = await BookingModel.find({
+        user_id: userId, // or use `userId` field based on your schema
+        isDeleted: false,
+      }).sort({ createdAt: -1 });
+
+      if (!userBookings.length) {
+        return res.status(200).send({
+          message: "No bookings found for this user",
+          bookings: [],
+        });
+      }
+
+      return res.status(200).send({
+        message: "User bookings fetched successfully",
+        bookings: userBookings,
+      });
+    } catch (err) {
+      console.error("Error in /getbookings/user/:userId:", err.message);
+      return res.status(500).send({ message: err.message });
+    }
+  }
+);
+
+
 
 export default BookingRoutes;

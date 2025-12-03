@@ -54,4 +54,4 @@ const paymentLinkSchema = new mongoose.Schema(
   }
 );
 
-export const PaymentLink = mongoose.model("PaymentLink", paymentLinkSchema);
+export const PaymentLinkModel = mongoose.model("PaymentLink", paymentLinkSchema);

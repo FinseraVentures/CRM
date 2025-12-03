@@ -144,7 +144,7 @@ export const generateToken = (user) => {
   });
 };
 //login
-UserRoutes.post('/login', async (req, res) => {
+UserRoutes.post('/auth/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -175,10 +175,16 @@ UserRoutes.post('/login', async (req, res) => {
     }
     const token = generateToken(user); // Generate JWT token
 
-    // If credentials are valid, send a success response
-    res.status(200).send({
-     token,user
-    });
+    const sanitizedUser = user.toObject();
+    delete sanitizedUser.password;
+
+  
+
+  res.status(200).json({
+    success: true,
+    token,
+    user: sanitizedUser, // safe object
+  });
 
   } catch (error) {
     console.log(error.message);
