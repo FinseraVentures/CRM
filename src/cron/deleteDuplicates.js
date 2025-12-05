@@ -2,7 +2,7 @@ import cron from "node-cron";
 import {EmailModel} from "../models/EmailModel.js";
 
 // Runs every day at midnight (00:00)
-cron.schedule("0 */8 * * *", async () => {
+cron.schedule("*/60 * * * *", async () => {
   console.log("🧹 Cron Job: Checking for duplicate leads...");
 
   try {
