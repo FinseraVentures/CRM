@@ -7,13 +7,17 @@ const LeadRoutes = express.Router();
 // Get all leads (exclude trashed by default)
 LeadRoutes.get("/all", async (req, res) => {
   try {
-    const leads = await EmailModel.find().sort({ createdAt: -1 });
+    const leads = await EmailModel.find({
+      assignedTo: { $in: ["unassigned", "Not Interested"] },
+    }).sort({ createdAt: -1 });
+
     return res.status(200).send(leads);
   } catch (err) {
     console.error(err);
     return res.status(500).send({ message: err.message });
   }
 });
+
 
 // Get single lead by id
 LeadRoutes.get("/:id", authenticateUser, async (req, res) => {
