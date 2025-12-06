@@ -1,0 +1,4 @@
+{"level":"info","message":"Server started","timestamp":"2025-12-05 17:27:16"}
+{"level":"info","message":"Server started","timestamp":"2025-12-05 17:27:16"}
+{"level":"info","message":"127.0.0.1 - - [05/Dec/2025:11:58:10 +0000] \"GET / HTTP/1.1\" 200 39 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36\"","timestamp":"2025-12-05 17:28:10"}
+{"level":"info","message":"127.0.0.1 - - [05/Dec/2025:11:58:10 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"http://localhost:5353/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36\"","timestamp":"2025-12-05 17:28:10"}

@@ -11,6 +11,9 @@ import LeadRoutes from "./routes/LeadRoute.js";
 import AdminRoutes from "./routes/AdminRoute.js";
 import dotenv from "dotenv";
 dotenv.config();
+import morganMiddleware from "./middlewares/logger.js";
+import logger from "./logger/index.js";
+import errorLogger from "./logger/errorLogger.js"
 import PaymentRoutes from "./routes/PaymentRoutes.js";
 import "./cron/deleteDuplicates.js";
 
@@ -18,6 +21,32 @@ import "./cron/deleteDuplicates.js";
 
 import cors from "cors";
 const app = express();
+// Morgan → logs every request
+app.use(morganMiddleware);
+
+// Log server start
+logger.info("Server started");
+app.use((err, req, res, next) => {
+  errorLogger.error({
+    message: err.message,
+    stack: err.stack,
+    route: req.originalUrl,
+    method: req.method,
+  });
+
+  res.status(500).json({ error: "Internal Server Error" });
+});
+
+// Uncaught & unhandled errors
+process.on("uncaughtException", (err) => {
+  errorLogger.error("Uncaught Exception: " + err.message, err);
+  process.exit(1);
+});
+
+process.on("unhandledRejection", (reason) => {
+  errorLogger.error("Unhandled Promise Rejection: " + reason);
+});
+
 
 app.use(express.json());
 app.use(cors());
