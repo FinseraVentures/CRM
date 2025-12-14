@@ -217,6 +217,8 @@ Rizvan
 
 Backend & Full‑Stack Developer
 
+[Portfolio](https://rizvan.is-a.dev/)
+
 ---
 
 
