@@ -235,6 +235,16 @@ Refactor carefully. Preserve:
 ### 📌 Notes
 This release is production-stable and actively used for internal operations.
 
+<img width="1920" height="868" alt="Login Page - CRM v2" src="https://github.com/user-attachments/assets/acd2b99b-cbc4-4984-ab83-14002a000d76" />
+<img width="1920" height="1631" alt="Dashboard Page - CRM V2" src="https://github.com/user-attachments/assets/a8af50c5-12d1-4cd6-b6c9-cf3a203b83d2" />
+<img width="1920" height="1747" alt="New Booking Page - CRM V2" src="https://github.com/user-attachments/assets/73d188c7-1b45-4e90-aab3-58878d6a7b1d" />
+<img width="1920" height="1355" alt="All Bookings Page  - CRM V2" src="https://github.com/user-attachments/assets/0f78d472-fb7e-4dfa-a4e0-90bd432d03e1" />
+<img width="1920" height="1270" alt="Payment Link Page  -   CRM V2" src="https://github.com/user-attachments/assets/877bd6d3-8ec1-4803-b97e-8965d60f2097" />
+<img width="1920" height="1319" alt="QR Code Page   - CRM V2" src="https://github.com/user-attachments/assets/fd5fc0b8-1c0b-4ab7-abd8-9e19f6d374da" />
+<img width="1920" height="1946" alt="Proforma Invoice Page -  CRM V2" src="https://github.com/user-attachments/assets/87335a5c-0490-470e-84c2-e80293a6fa6f" />
+<img width="1920" height="978" alt="Users Page  - CRM V2" src="https://github.com/user-attachments/assets/b2b9d207-8fb8-428d-ac39-354493101b5a" />
+<img width="1920" height="1094" alt="Services Page  - CRM V2" src="https://github.com/user-attachments/assets/ef21f28f-b7d4-4efd-b60a-641b5cefa3b0" />
+<img width="1920" height="1140" alt="Trash Page  - CRM V2" src="https://github.com/user-attachments/assets/6f2c3772-08d1-4239-b209-6587d849e9b5" />
 
 ## 🛣️ Roadmap
 
