@@ -265,8 +265,10 @@ This release is production-stable and actively used for internal operations.
 Rizvan K
 
 Backend & Full‑Stack Developer
+📩 **Feel free to contact me about anything related to the project or for any queries — I’m always happy to help!** 😊  
+✉️ [Rizvankurungattil101@gmail.com](mailto:rizvankurungattil101@gmail.com)
 
-[Portfolio](https://rizvan.is-a.dev/)
+[Visit My Portfolio](https://rizvan.is-a.dev/)
 
 ---
 
