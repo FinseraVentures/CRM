@@ -254,7 +254,7 @@ This release is production-stable and actively used for internal operations.
 - Config-driven feature flags
 
 
-## 👨‍💻 Author
+## 👨‍💻 Developer
 Rizvan 
 
 Backend & Full‑Stack Developer
