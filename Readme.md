@@ -213,8 +213,9 @@ Refactor carefully. Preserve:
 ---
 
 ## 👨‍💻 Author
+Rizvan
+Backend & Full‑Stack Developer
 
-Project Maintainer  
 —
 
 ---
