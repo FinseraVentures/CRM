@@ -210,7 +210,31 @@ Refactor carefully. Preserve:
 - Audit trails
 - Payment integrity
 
----
+## 🚀 v1.0.1 – Stable Production Release
+
+### ✅ Features
+- Booking management with offline support
+- Service selection & invoice viewing
+- Payment initiation (links & QR)
+- Role-based UI rendering
+- IndexedDB caching for core entities
+
+### ⚡ Improvements
+- Reduced API calls via local cache
+- Faster UI hydration
+- Improved error handling
+
+### 🛡️ Security
+- JWT-based authentication
+- No Bearer token dependency (custom auth contract)
+
+### ⚠️ Known Limitations
+- Lead management UI not included
+- Payments require an active internet connection
+
+### 📌 Notes
+This release is production-stable and actively used for internal operations.
+
 
 ## 👨‍💻 Author
 Rizvan 
