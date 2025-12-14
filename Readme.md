@@ -213,12 +213,10 @@ Refactor carefully. Preserve:
 ---
 
 ## 👨‍💻 Author
-Rizvan
-Backend & Full‑Stack Developer
+Rizvan 
 
-—
+Backend & Full‑Stack Developer
 
 ---
 
-✅ Backend README – READY
 
