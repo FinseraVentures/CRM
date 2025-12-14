@@ -232,6 +232,13 @@ Refactor carefully. Preserve:
 ### 📌 Notes
 This release is production-stable and actively used for internal operations.
 
+![Full Diagram](https://github.com/user-attachments/assets/ee2b751a-617a-4200-9618-5ba982acc3bb)
+![REST API](https://github.com/user-attachments/assets/a61b5b22-21a5-4c25-96b4-1e8e543db05d)
+![JWT   DB](https://github.com/user-attachments/assets/107adf5e-aca2-4eea-8d90-862114fe73a5)
+![Mongoose   Razorpay](https://github.com/user-attachments/assets/15bb8457-6c10-4210-8d3d-4361d6e1b2cf)
+![Payment   Logging](https://github.com/user-attachments/assets/a20e75dc-35f3-426c-adb8-69e4d6a97ed4)
+<img width="1408" height="768" alt="Detailed Diagram" src="https://github.com/user-attachments/assets/cbb4fe41-0d30-4b5a-8ebb-6158eb1219cd" />
+
 
 ## 🛣️ Roadmap
 
