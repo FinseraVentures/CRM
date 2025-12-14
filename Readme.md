@@ -255,7 +255,7 @@ This release is production-stable and actively used for internal operations.
 
 
 ## 👨‍💻 Developer
-Rizvan 
+Rizvan K
 
 Backend & Full‑Stack Developer
 
