@@ -41,7 +41,7 @@ Key decisions:
 ⚠️ **Bearer prefix is NOT used**
 
 ```http
-Authorization: <JWT_TOKEN>
+authorization: <JWT_TOKEN>
 ```
 
 Breaking this will break the frontend.
@@ -169,8 +169,6 @@ APPSCRIPT_URL=
 APPSCRIPT_SECRET=
 ```
 
----
-
 ## 🚀 Running Locally
 
 ```bash
@@ -185,7 +183,6 @@ npm run build
 npm run start
 ```
 
----
 
 ## 🚧 Recommended Improvements
 
