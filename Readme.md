@@ -236,6 +236,24 @@ Refactor carefully. Preserve:
 This release is production-stable and actively used for internal operations.
 
 
+## 🛣️ Roadmap
+
+### v1.1
+- UI-level RBAC guards
+- Centralized notification system
+- Improved error boundaries
+
+### v1.2
+- PWA support
+- Background sync for offline updates
+- Better loading states & skeletons
+
+### v2.0
+- Full Lead Management UI
+- Advanced analytics dashboards
+- Config-driven feature flags
+
+
 ## 👨‍💻 Author
 Rizvan 
 
