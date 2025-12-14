@@ -267,8 +267,8 @@ Rizvan K
 Backend & Full‑Stack Developer
 📩 **Feel free to contact me about anything related to the project or for any queries — I’m always happy to help!** 😊  
 ✉️ [Rizvankurungattil101@gmail.com](mailto:rizvankurungattil101@gmail.com)
+Visit My Portfolio at <a href="https://rizvan.is-a.dev/" target="_blank" rel="noopener noreferrer">Rizvan's Portfolio</a>
 
-Visit My Portfolio at [Rizvan's Portfolio](https://rizvan.is-a.dev/)
 
 ---
 
